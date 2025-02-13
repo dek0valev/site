@@ -21,12 +21,12 @@ export async function ArticlesReadPage({ params }: Props) {
             <div className="py-10 lg:py-16">
                 <div className="container max-w-screen-md">
                     <div className="flex flex-col">
-                        <div className="mb-6 flex flex-col items-start">
+                        <div className="mb-5 flex flex-col items-start">
                             <Link
                                 href="/blog"
-                                className="group inline-flex items-center justify-center gap-x-1 rounded-md border border-neutral-200 px-2 py-1.5 text-sm duration-300 hover:bg-neutral-100 dark:border-neutral-200/20 dark:text-white dark:hover:bg-neutral-100/5"
+                                className="group inline-flex items-center justify-center gap-x-1 rounded-md border border-neutral-200 px-2 py-1.5 text-sm text-neutral-900 duration-300 hover:bg-neutral-100 dark:border-neutral-200/20 dark:text-white dark:hover:bg-neutral-100/5"
                             >
-                                <span className="inline-flex items-center justify-center dark:text-white">
+                                <span className="inline-flex items-center justify-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
@@ -49,7 +49,7 @@ export async function ArticlesReadPage({ params }: Props) {
                                         />
                                     </svg>
                                 </span>
-                                <span className="inline-block"> Назад в блог </span>
+                                <span className="inline-block">Назад в блог</span>
                             </Link>
                         </div>
                         <div className="mb-10 flex flex-col">
