@@ -7,11 +7,11 @@ export async function ArticlesListPage() {
     return (
         <section>
             <div className="py-10 lg:py-16">
-                <div className="container max-w-screen-sm">
+                <div className="container max-w-screen-md">
                     <div className="flex flex-col">
-                        <h1 className="mb-5 text-xl font-medium text-neutral-900 dark:text-white">Блог</h1>
+                        <h1 className="mb-5 text-2xl font-medium text-neutral-900 dark:text-white">Блог</h1>
                         <div className="grid auto-rows-auto grid-cols-1 gap-y-3">
-                            {articles.map(({ slug, category, title, publishedAt }) => {
+                            {articles.map(({ title, slug, category, publishedAt }) => {
                                 return (
                                     <div key={slug} className="inline-flex flex-col">
                                         <ArticleCard
