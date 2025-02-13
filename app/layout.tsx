@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 import { interFont, jetBrainsMonoFont } from '@/app/fonts';
+import { Header } from '@/widgets/header';
 
 export const metadata: Metadata = {
     title: {
@@ -22,6 +23,7 @@ export default function RootLayout({
         <html lang="ru" className={`${interFont.variable} ${jetBrainsMonoFont.variable} antialiased`}>
             <body className="min-h-dvh max-w-screen bg-white text-neutral-600 dark:bg-stone-900 dark:text-neutral-300">
                 <div className="isolate">
+                    <Header />
                     <main id="content">{children}</main>
                 </div>
             </body>
