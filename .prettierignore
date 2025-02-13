@@ -1,0 +1,18 @@
+# ide
+.idea/
+.vscode/
+
+# dependencies
+/node_modules/
+
+package.json
+pnpm-lock.yaml
+
+# misc
+.prettierrc
+README.md
+tsconfig.json
+
+# next.js
+/.next/
+/out/
