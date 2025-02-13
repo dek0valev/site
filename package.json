@@ -14,6 +14,7 @@
     "format": "prettier --write \"**/*.{js,ts,jsx,tsx,cjs,cts,mjs,mts,md,mdx,css}\""
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
