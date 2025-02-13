@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@shikijs/rehype": "^2.3.2",
+    "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "15.1.7",
     "react": "^19.0.0",
