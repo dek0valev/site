@@ -11,7 +11,7 @@ export async function SectionArticles() {
                 <div className="container max-w-screen-md">
                     <div className="flex flex-col">
                         <div className="mb-5 flex items-center justify-between">
-                            <h2 className="text-xl font-medium text-neutral-900 dark:text-white">Последние статьи</h2>
+                            <h2 className="text-lg lg:text-xl font-medium text-neutral-900 dark:text-white">Последние статьи</h2>
 
                             <Link
                                 href="/blog"
