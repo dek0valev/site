@@ -53,28 +53,30 @@ export async function ArticlesReadPage({ params }: Props) {
                             </Link>
                         </div>
                         <div className="mb-10 flex flex-col">
-                            <h1 className="mb-2 text-2xl font-medium text-neutral-900 dark:text-white">
+                            <h1 className="mb-1 lg:mb-2 text-xl font-medium text-neutral-900 lg:text-2xl dark:text-white">
                                 {article.title}
                             </h1>
                             <div className="flex items-center gap-x-1">
-                                <time className="inline-block font-medium text-neutral-500 dark:text-neutral-400">
+                                <time className="inline-block text-sm font-medium text-neutral-500 lg:text-base dark:text-neutral-400">
                                     {article.publishedAt.toLocaleDateString('ru-RU', {
                                         year: 'numeric',
                                         month: 'short',
                                         day: 'numeric',
                                     })}
                                 </time>
-                                <span className="inline-block leading-none font-light text-neutral-500 dark:text-neutral-400">
+                                <span className="inline-block text-sm leading-none font-light text-neutral-500 lg:text-base dark:text-neutral-400">
                                     •
                                 </span>
-                                <span className={`inline-block font-medium text-neutral-500 dark:text-neutral-400`}>
+                                <span
+                                    className={`inline-block text-sm font-medium text-neutral-500 lg:text-base dark:text-neutral-400`}
+                                >
                                     {article.category}
                                 </span>
                             </div>
                         </div>
                         <article
                             dangerouslySetInnerHTML={{ __html: article.content }}
-                            className={`prose prose-neutral dark:prose-invert prose-headings:font-medium prose-h2:text-xl prose-h3:text-lg max-w-full`}
+                            className={`prose prose-neutral dark:prose-invert prose-headings:font-medium prose-h2:text-lg lg:prose-h2:text-xl prose-h3:text-base lg:prose-h3:text-lg max-w-full`}
                         />
                     </div>
                 </div>

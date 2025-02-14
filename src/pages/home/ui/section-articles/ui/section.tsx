@@ -11,11 +11,13 @@ export async function SectionArticles() {
                 <div className="container max-w-screen-md">
                     <div className="flex flex-col">
                         <div className="mb-5 flex items-center justify-between">
-                            <h2 className="text-lg lg:text-xl font-medium text-neutral-900 dark:text-white">Последние статьи</h2>
+                            <h2 className="text-lg font-medium text-neutral-900 lg:text-xl dark:text-white">
+                                Последние статьи
+                            </h2>
 
                             <Link
                                 href="/blog"
-                                className="inline-block underline decoration-neutral-600/50 underline-offset-2 duration-300 hover:text-neutral-900 hover:decoration-neutral-900/50 dark:decoration-neutral-300/50 dark:hover:text-white dark:hover:decoration-white/50"
+                                className="inline-block text-sm underline decoration-neutral-600/50 underline-offset-2 duration-300 hover:text-neutral-900 hover:decoration-neutral-900/50 lg:text-base dark:decoration-neutral-300/50 dark:hover:text-white dark:hover:decoration-white/50"
                             >
                                 Смотреть все
                             </Link>
