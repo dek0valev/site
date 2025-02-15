@@ -53,7 +53,7 @@ export async function ArticlesReadPage({ params }: Props) {
                             </Link>
                         </div>
                         <div className="mb-10 flex flex-col">
-                            <h1 className="mb-1 lg:mb-2 text-xl font-medium text-neutral-900 lg:text-2xl dark:text-white">
+                            <h1 className="mb-1 text-xl font-medium text-neutral-900 lg:mb-2 lg:text-2xl dark:text-white">
                                 {article.title}
                             </h1>
                             <div className="flex items-center gap-x-1">

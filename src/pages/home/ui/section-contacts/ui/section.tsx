@@ -31,7 +31,9 @@ export function SectionContacts() {
                 <div className="container max-w-screen-md">
                     <div className="flex flex-col">
                         <div className="mb-5 flex items-center justify-between">
-                            <h2 className="text-lg lg:text-xl font-medium text-neutral-900 dark:text-white">Контакты</h2>
+                            <h2 className="text-lg font-medium text-neutral-900 lg:text-xl dark:text-white">
+                                Контакты
+                            </h2>
                         </div>
                         <div className="flex flex-col">
                             <ul className="flex flex-col space-y-2">
