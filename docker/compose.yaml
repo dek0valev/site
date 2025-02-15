@@ -23,5 +23,5 @@ services:
       - certbot_www:/var/www/certbot
 
 volumes:
-  cert-data:
-  webroot:
+  certbot_conf:
+  certbot_www:
