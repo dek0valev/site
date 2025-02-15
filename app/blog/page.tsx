@@ -1,1 +1,1 @@
-export { ArticlesListPage as default } from '@/pages/articles-list';
+export { ArticlesListPage as default,  metadata } from '@/pages/articles-list';
