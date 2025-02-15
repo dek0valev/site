@@ -1,0 +1,36 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8085:80"
+    volumes:
+      - ../nginx/default.conf.template:/etc/nginx/templates/default.conf.template
+      - cert-data:/etc/letsencrypt
+      - webroot:/var/www/certbot
+    depends_on:
+      - certbot
+    environment:
+      - BASE_URL=${BASE_URL}
+      - SERVER_HOST=${SERVER_HOST}
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - cert-data:/etc/letsencrypt
+      - webroot:/var/www/certbot
+    environment:
+      - EMAIL=${CERTBOT_EMAIL}
+      - DOMAIN=${CERTBOT_DOMAIN}
+    entrypoint: >
+      sh -c "
+      certbot certonly --webroot -w /var/www/certbot
+        --email ${EMAIL} --agree-tos --no-eff-email
+        -d ${DOMAIN} && 
+      crond -f -L /dev/stdout
+      "
+
+volumes:
+  cert-data:
+  webroot:

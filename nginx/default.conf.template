@@ -1,0 +1,44 @@
+server {
+  listen 80;
+  server_name ${SERVER_HOST};
+
+  location /.well-known/acme-challenge/ {
+      root /var/www/out;
+  }
+
+  location / {
+      return 301 https://$host$request_uri;
+  }
+}
+
+# HTTPS: обслуживаем статический сайт с SSL
+server {
+  listen 443 ssl;
+  server_name localhost;
+
+  # SSL-настройки: пути к сертификатам
+  ssl_certificate /etc/letsencrypt/live/${SERVER_HOST}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/${SERVER_HOST}/privkey.pem;
+
+  # Рекомендуемые SSL-настройки
+  ssl_protocols TLSv1.2 TLSv1.3;
+  ssl_ciphers HIGH:!aNULL:!MD5;
+  ssl_session_cache shared:SSL:10m;
+  ssl_session_timeout 10m;
+  ssl_prefer_server_ciphers on;
+
+  root /var/www/out;
+
+  location / {
+      try_files $uri $uri.html $uri/ =404;
+  }
+
+  location /blog/ {
+      rewrite ^/blog/(.*)$ /blog/$1.html break;
+  }
+
+  error_page 404 /404.html;
+  location = /404.html {
+      internal;
+  }
+}
