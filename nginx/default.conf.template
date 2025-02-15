@@ -1,44 +1,62 @@
+# -----------------------
+# HTTP (порт 80)
+# -----------------------
 server {
-  listen 80;
-  server_name ${SERVER_HOST};
+    listen 80;
+    server_name $SERVER_HOST;
 
-  location /.well-known/acme-challenge/ {
-      root /var/www/out;
-  }
+    # Корень, где лежит ваш сгенерированный сайт/приложение
+    root /var/www/out;
 
-  location / {
-      return 301 https://$host$request_uri;
-  }
+    # Обработка основной части запросов
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    # Правило для /blog/, если trailingSlash: false
+    location /blog/ {
+        rewrite ^/blog/(.*)$ /blog/$1.html break;
+    }
+
+    # Страница 404
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+
+    # Локация для размещения файлов валидации Let's Encrypt
+    location /.well-known/acme-challenge/ {
+        alias /var/www/certbot/.well-known/acme-challenge/;
+    }
+
+    # При необходимости — редирект на https (раскомментируйте при желании)
+    return 301 https://$host$request_uri;
 }
 
-# HTTPS: обслуживаем статический сайт с SSL
+# -----------------------
+# HTTPS (порт 443)
+# -----------------------
 server {
-  listen 443 ssl;
-  server_name localhost;
+    listen 443 ssl;
+    server_name $SERVER_HOST;
 
-  # SSL-настройки: пути к сертификатам
-  ssl_certificate /etc/letsencrypt/live/${SERVER_HOST}/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/${SERVER_HOST}/privkey.pem;
+    # Файлы сертификата
+    ssl_certificate     /etc/letsencrypt/live/$SERVER_HOST/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$SERVER_HOST/privkey.pem;
 
-  # Рекомендуемые SSL-настройки
-  ssl_protocols TLSv1.2 TLSv1.3;
-  ssl_ciphers HIGH:!aNULL:!MD5;
-  ssl_session_cache shared:SSL:10m;
-  ssl_session_timeout 10m;
-  ssl_prefer_server_ciphers on;
+    # Корень, где лежит ваш сгенерированный сайт/приложение
+    root /var/www/out;
 
-  root /var/www/out;
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
 
-  location / {
-      try_files $uri $uri.html $uri/ =404;
-  }
+    location /blog/ {
+        rewrite ^/blog/(.*)$ /blog/$1.html break;
+    }
 
-  location /blog/ {
-      rewrite ^/blog/(.*)$ /blog/$1.html break;
-  }
-
-  error_page 404 /404.html;
-  location = /404.html {
-      internal;
-  }
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
 }

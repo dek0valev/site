@@ -11,3 +11,6 @@ RUN pnpm run build
 
 FROM nginx:1.27.4-bookworm AS runner
 COPY --from=build /app/out /var/www/out
+RUN apk add --no-cache gettext
+COPY ./nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
+CMD ["/bin/sh", "-c", "envsubst '${SERVER_HOST}' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]

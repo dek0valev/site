@@ -3,12 +3,13 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+    restart: unless-stopped
     ports:
-      - "8085:80"
+      - "80:80"
+      - "443:443"
     volumes:
-      - ../nginx/default.conf.template:/etc/nginx/templates/default.conf.template
-      - cert-data:/etc/letsencrypt
-      - webroot:/var/www/certbot
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
     depends_on:
       - certbot
     environment:
@@ -16,20 +17,10 @@ services:
       - SERVER_HOST=${SERVER_HOST}
 
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:latest
     volumes:
-      - cert-data:/etc/letsencrypt
-      - webroot:/var/www/certbot
-    environment:
-      - EMAIL=${CERTBOT_EMAIL}
-      - DOMAIN=${CERTBOT_DOMAIN}
-    entrypoint: >
-      sh -c "
-      certbot certonly --webroot -w /var/www/certbot
-        --email ${EMAIL} --agree-tos --no-eff-email
-        -d ${DOMAIN} && 
-      crond -f -L /dev/stdout
-      "
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
 
 volumes:
   cert-data:
